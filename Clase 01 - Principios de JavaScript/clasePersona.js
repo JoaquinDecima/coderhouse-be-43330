@@ -24,11 +24,11 @@ class Persona {
 	}
 }
 
-// Creo una instancia de persona en la constante pepe
+// Creo una instancia de Persona en la constante pepe
 // Dicha instancia toma como nombre Pepe
 const pepe = new Persona('Pepe');
 
-// Creo una instancia de persona en la constante jose
+// Creo una instancia de Persona en la constante jose
 // Dicha instancia toma como nombre Maria
 const jose = new Persona('Maria');
 
