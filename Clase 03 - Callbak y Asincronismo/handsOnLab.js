@@ -63,6 +63,7 @@ const resta = (num1, num2) => {
 const div = (dividendo, divisor) => {
 	// Retorno una promesa
 	return new Promise((resolve, reject) => {
+		// Si el divisor es 0
 		if (divisor === 0) {
 			// Rechazo la promesa
 			reject(`No se divide por 0`);
