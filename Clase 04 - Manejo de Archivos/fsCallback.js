@@ -1,35 +1,40 @@
+// Llamo a la libreria fs y la guardo en variable fs
 const fs = require('fs');
 
+/* Escribo el archivo './fsCallback.txt' poniendo dentro
+ * 'Estoy escribiendo un Archivo con Callback \n' de manera sincronica
+ */
 fs.writeFile(
-	'./files/fsSync.txt',
+	'./fsCallback.txt',
 	'Estoy escribiendo un Archivo con Callback \n',
 	(err) => {
+		// Si hay error salgo del callback
 		if (err) return console.log('No se escribir');
 
-		fs.readFile('./files/fsSync.txt', 'utf-8', (err, contenido) => {
+		// Leo el archivo './fsCallback.txt'.
+		fs.readFile('./fsCallback.txt', 'utf-8', (err, contenido) => {
+			// Si hay error salgo del callback
 			if (err) return console.log('No se Leer');
-			console.log(contenido);
+			console.log(contenido); // Imprimo en pantalla
 
-			fs.appendFile(
-				'./files/fsSync.txt',
-				'Aca agrego algo mas',
-				(err) => {
-					if (err) return console.log('No se escribir');
+			// Agrego al archivo './fsCallback.txt' el texto 'Aca agrego algo mas'
+			fs.appendFile('./fsCallback.txt', 'Aca agrego algo mas', (err) => {
+				// Si hay error salgo del callback
+				if (err) return console.log('No se escribir');
 
-					fs.readFile(
-						'./files/fsSync.txt',
-						'utf-8',
-						(err, contenido) => {
-							if (err) return console.log('No se Leer');
-							console.log(contenido);
+				// Leo el archivo './fsCallback.txt'.
+				fs.readFile('./fsCallback.txt', 'utf-8', (err, contenido) => {
+					// Si hay error salgo del callback
+					if (err) return console.log('No se Leer');
+					console.log(contenido); // Imprimo en pantalla
 
-							fs.unlink('./files/fsSync.txt', (err) => {
-								if (err) return console.log('No se Borrar');
-							});
-						}
-					);
-				}
-			);
+					// Borro el archivo
+					fs.unlink('./fsCallback.txt', (err) => {
+						// Si hay error salgo del callback
+						if (err) return console.log('No se Borrar');
+					});
+				});
+			});
 		});
 	}
 );
