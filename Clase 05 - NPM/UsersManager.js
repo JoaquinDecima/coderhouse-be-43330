@@ -105,6 +105,32 @@ class UserManager {
 			console.log('No puedo darte usuarios');
 		}
 	}
+
+	async updateUser(nombre, edit) {
+		let edited = false; // Flag para saber si se edito o no
+		let users; // Variable para guardar los usuarios
+		try {
+			users = await this.getUsers();
+			users.map((user) => {
+				if (user.nombre === nombre) {
+					user = { ...user, ...edit };
+					edited = true;
+				}
+			});
+
+			if (edited) {
+				console.log('Usuario actualizado');
+				await fs.promises.writeFile(
+					'./users.json',
+					JSON.stringify(users)
+				);
+			} else {
+				console.log('No se encontro el usuario');
+			}
+		} catch (err) {
+			console.log('No puedo actualizar usuarios');
+		}
+	}
 }
 
 // Creo una instancia de User Manger
