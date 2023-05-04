@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguanten los Gatos</title>
+</head>
+
+<body>
+    <center>
+        <h1>La mejor mascota del mundo mundial</h1>
+        <img src="/img/gatito.webp" />
+
+        <form method="post" action="/api/pets" enctype="multipart/form-data">
+            <input type="text" required id="name" name="name" placeholder="Nombre de Tu Mascota" />
+            <input type="text" required id="type" name="type" placeholder="¿Que Animal es?" />
+            <input type="file" required id="img" name="img" placeholder="Foto!" />
+
+            <button type="submit">Enviar</button>
+        </form>
+    </center>
+</body>
+
+</html>
