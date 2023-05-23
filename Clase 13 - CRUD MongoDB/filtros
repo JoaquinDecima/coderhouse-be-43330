@@ -1,0 +1,20 @@
+db.filtros.insertMany([
+	{ name: 'Pablo', edad: 25 },
+	{ name: 'Juan', edad: 22 },
+	{ name: 'Juan', edad: 29 },
+	{ name: 'Fede', edad: 35 },
+	{ name: 'Lucia', edad: 25 },
+]);
+db.filtros.find().sort({ edad: -1 });
+db.filtros.find().sort({ edad: 1 }).limit(1);
+db.filtros.find().sort({ edad: 1 }).skip(1).limit(1);
+db.filtros.find({ name: 'Juan' });
+db.filtros.find({ $or: [{ name: 'Juan' }, { name: 'Lucia' }] });
+db.filtros.find({ edad: { $gt: 25 } });
+db.filtros.find({ edad: { $lte: 25 } });
+db.filtros.find({ edad: { $ne: 25 } });
+db.filtros.find({ $and: [{ edad: { $lt: 36 } }, { edad: { $gt: 25 } }] });
+db.filtros.updateOne({ name: 'Fede' }, { $set: { edad: 36 } });
+db.filtros.updateMany({ edad: 25 }, { $set: { edad: 26 } });
+db.filtros.deleteMany({ name: 'Juan' });
+db.filtros.deleteMany({});

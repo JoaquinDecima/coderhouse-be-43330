@@ -1,0 +1,38 @@
+// use colegio
+db.createCollection('Estudiantes');
+db.Estudiantes.insertMany([
+	{
+		name: 'Lucas',
+		edad: 12,
+		sexo: 'H',
+		curso: '6',
+		correo: 'lucas@mail.com',
+	},
+	{
+		name: 'Sofia',
+		edad: 11,
+		sexo: 'M',
+		curso: '6',
+		correo: 'Sofii@mail.com',
+	},
+	{ name: 'Lucia', edad: 13, sexo: 'M', curso: '7', correo: 'Lulu@mail.com' },
+	{
+		name: 'German',
+		edad: 15,
+		sexo: 'H',
+		curso: '6',
+		correo: 'tuturrito@mail.com',
+	},
+	{
+		name: 'Diego',
+		edad: 12,
+		sexo: 'H',
+		curso: '6',
+		correo: 'eldurazno@mail.com',
+	},
+]);
+db.Estudiantes.insertOne({ name: 'Fernanda', curso: '6' });
+db.Estudiantes.find();
+db.Estudiantes.find({ sexo: 'H' });
+db.Estudiantes.countDocuments();
+db.Estudiantes.countDocuments({ sexo: 'M' });
