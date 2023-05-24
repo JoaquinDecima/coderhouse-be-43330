@@ -1,16 +1,16 @@
 import { Router } from 'express';
-import { cartController } from '../utils/instances.js';
+import { cartService } from '../utils/instances.js';
 
 const cartsRouter = Router();
 
 cartsRouter.get('/:id', (req, res) => {
 	const cartId = req.params.id;
-	res.send(cartController.getCardById(cartId));
+	res.send(cartService.getCardById(cartId));
 });
 
 cartsRouter.post('/', (req, res) => {
 	const cart = req.body;
-	const status = cartController.addCart(cart);
+	const status = cartService.addCart(cart);
 
 	if (!status) {
 		res.status(502).send();
@@ -23,7 +23,7 @@ cartsRouter.post('/:cartId/product/:productId', (req, res) => {
 	const cartId = req.params.cartId;
 	const productId = req.params.productId;
 
-	const status = cartController.addProductToCart(productId, cartId);
+	const status = cartService.addProductToCart(productId, cartId);
 
 	if (!status) {
 		res.status(404).send();

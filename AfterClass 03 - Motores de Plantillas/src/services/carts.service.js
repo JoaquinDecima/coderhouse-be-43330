@@ -1,6 +1,6 @@
-import { productsController } from '../utils/instances.js';
+import { productsService } from '../utils/instances.js';
 
-export default class CartController {
+export default class CartService {
 	#id = 0;
 	constructor() {
 		this.carts = [];
@@ -22,7 +22,7 @@ export default class CartController {
 	}
 
 	addProductToCart(productId, cartId) {
-		const product = productsController.getProductById(productId);
+		const product = productsService.getProductById(productId);
 		let status = false;
 		this.carts.map((cart) => {
 			if (cart.id === cartId) {

@@ -1,5 +1,5 @@
-import ProductsController from '../controllers/products.controller.js';
-import CartController from '../controllers/carts.controller.js';
+import ProductsService from '../services/products.service.js';
+import CartService from '../services/carts.service.js';
 
-export const productsController = new ProductsController();
-export const cartController = new CartController();
+export const productsService = new ProductsService();
+export const cartService = new CartService();

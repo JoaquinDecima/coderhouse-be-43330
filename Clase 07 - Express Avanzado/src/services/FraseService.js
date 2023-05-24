@@ -1,6 +1,6 @@
-export default class FraseManager {
+export default class FraseService {
 	/**
-	 * Metodo que inicializa la clase FraseManager
+	 * Metodo que inicializa la clase FraseService
 	 * @param {String} frase La Frase
 	 */
 	constructor(frase) {

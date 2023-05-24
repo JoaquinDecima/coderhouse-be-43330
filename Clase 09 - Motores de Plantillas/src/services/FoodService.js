@@ -1,4 +1,4 @@
-export default class FoodController {
+export default class FoodService {
 	#food;
 	constructor() {
 		this.#food = [

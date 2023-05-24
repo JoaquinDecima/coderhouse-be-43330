@@ -1,4 +1,4 @@
-class UserController {
+class UserService {
 	#users;
 	constructor() {
 		this.#users = [
@@ -18,4 +18,4 @@ class UserController {
 		return this.#users;
 	}
 }
-export const userController = new UserController();
+export const userService = new UserService();
