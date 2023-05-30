@@ -1,0 +1,80 @@
+<div><br /></div>
+<div class='container'>
+	<div class='row'>
+
+		<div class='col-md-8'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th scope='col'>ID</th>
+						<th scope='col'>First</th>
+						<th scope='col'>Last</th>
+						<th scope='col'>DNI</th>
+						<th scope='col'>Year</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each students}}
+						<tr>
+							<th scope='row'>{{this._id}}</th>
+							<td>{{this.name}}</td>
+							<td>{{this.lastname}}</td>
+							<td>{{this.dni}}</td>
+							<td>{{this.year}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+
+		<div class='col-md-4'>
+			<h2>Agregar Estudiante</h2>
+			<form action='/api/students' method='post'>
+				<div class='row'>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='Nombre'
+							aria-label='Nombre'
+							name='name'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='Apellido'
+							aria-label='Apellido'
+							name='lastname'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='DNI'
+							aria-label='DNI'
+							name='dni'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='number'
+							class='form-control'
+							placeholder='Año de Nacimiento'
+							aria-label='Año de Nacimiento'
+							name='year'
+						/>
+					</div>
+					<div class='col-12'>
+						<button type='submit' class='form-control'>
+							Enviar
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>
