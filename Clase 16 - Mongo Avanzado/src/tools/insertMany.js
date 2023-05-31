@@ -9,3 +9,4 @@ mongoose.connect(
 const data = await userModel.insertMany(users);
 
 console.log(data);
+mongoose.disconnect();

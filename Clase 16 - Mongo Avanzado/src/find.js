@@ -8,3 +8,4 @@ mongoose.connect(
 const data = await userModel.find().explain('executionStats');
 
 console.log(data);
+mongoose.disconnect();
