@@ -10,5 +10,4 @@ const data = await userModel
 	.explain('executionStats');
 
 console.log(data);
-
 mongoose.disconnect();
