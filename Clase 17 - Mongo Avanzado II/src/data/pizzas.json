@@ -1,0 +1,56 @@
+[
+	{
+		"name": "Muzzarella",
+		"size": "large",
+		"price": 560,
+		"quantity": 27
+	},
+	{
+		"name": "Napolitana",
+		"size": "medium",
+		"price": 430,
+		"quantity": 19
+	},
+	{
+		"name": "Fugazzeta",
+		"size": "small",
+		"price": 300,
+		"quantity": 30
+	},
+	{
+		"name": "Calabresa",
+		"size": "medium",
+		"price": 430,
+		"quantity": 12
+	},
+	{
+		"name": "Cuatro Quesos",
+		"size": "large",
+		"price": 560,
+		"quantity": 3
+	},
+	{
+		"name": "Anchoas",
+		"size": "small",
+		"price": 300,
+		"quantity": 11
+	},
+	{
+		"name": "Jamón y Morrones",
+		"size": "medium",
+		"price": 430,
+		"quantity": 8
+	},
+	{
+		"name": "Faina",
+		"size": "small",
+		"price": 300,
+		"quantity": 0
+	},
+	{
+		"name": "Choclo",
+		"size": "medium",
+		"price": 430,
+		"quantity": 10
+	}
+]
