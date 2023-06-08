@@ -6,6 +6,7 @@ import session from 'express-session';
 import cookieRouter from './routes/cookies.router.js';
 import viewsRouter from './routes/views.router.js';
 import sessionRouter from './routes/sessions.router.js';
+import userRouter from './routes/users.router.js';
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use(
 // Routes
 app.use('/cookies', cookieRouter);
 app.use('/session', sessionRouter);
+app.use('/api/users', userRouter);
 app.use('/', viewsRouter);
 
 app.listen(8080, () => {
