@@ -1,9 +1,11 @@
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import handlebars from 'express-handlebars';
+import session from 'express-session';
 
 import cookieRouter from './routes/cookies.router.js';
 import viewsRouter from './routes/views.router.js';
+import sessionRouter from './routes/sessions.router.js';
 
 const app = express();
 
@@ -23,8 +25,18 @@ app.use(express.static('public'));
 //app.use(cookieParser());
 app.use(cookieParser('B2zdY3B$pHmxW%'));
 
+// Session
+app.use(
+	session({
+		secret: 'B2zdY3B$pHmxW%',
+		resave: true,
+		saveUninitialized: true,
+	})
+);
+
 // Routes
 app.use('/cookies', cookieRouter);
+app.use('/session', sessionRouter);
 app.use('/', viewsRouter);
 
 app.listen(8080, () => {
