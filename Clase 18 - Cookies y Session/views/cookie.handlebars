@@ -1,0 +1,43 @@
+<div><br /></div>
+<div class='container'>
+	<div class='row'>
+
+		<div class='col-md-12'>
+			<h2>Agregar Data</h2>
+			<form action='/cookies' method='post'>
+				<div class='row'>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='Nombre'
+							aria-label='Nombre'
+							name='name'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='email'
+							class='form-control'
+							placeholder='Correo Electronico'
+							aria-label='Correo Electronico'
+							name='email'
+						/>
+					</div>
+					<div class='col-12'>
+						<button type='submit' class='form-control'>
+							Enviar
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<button class='btn btn-primary col-12' onclick='getCookies();'>
+			Get Cookies
+		</button>
+
+	</div>
+</div>
+
+<script src='/js/main.js'></script>
