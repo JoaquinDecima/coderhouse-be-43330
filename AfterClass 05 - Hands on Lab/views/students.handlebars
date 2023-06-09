@@ -1,0 +1,65 @@
+<div><br /></div>
+<div class='container'>
+	<div class='row'>
+
+		<!--<div class='col-12'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th scope='col'>ID</th>
+						<th scope='col'>Nombre</th>
+						<th scope='col'>Apellido</th>
+						<th scope='col'>Correo</th>
+						<th scope='col'>Genero</th>
+						<th scope='col'>Nota</th>
+						<th scope='col'>Grupo</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each docs}}
+						<tr>
+							<th scope='row'>{{this._id}}</th>
+							<td>{{this.first_name}}</td>
+							<td>{{this.last_name}}</td>
+							<td>{{this.email}}</td>
+							<td>{{this.gender}}</td>
+							<td>{{this.grade}}</td>
+							<td>{{this.group}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>-->
+
+		{{#each docs}}
+		<div class="col-md-3">
+			<div class="card">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item"><b>Nombre:</b> {{this.first_name}} {{this.last_name}}</li>
+				<li class="list-group-item"><b>Correo:</b> {{this.email}}</li>
+				<li class="list-group-item"><b>Genero:</b> {{this.gender}}</li>
+				<li class="list-group-item"><b>Nota:</b> {{this.grade}}</li>
+				<li class="list-group-item"><b>Grupo:</b> {{this.group}}</li>
+			</ul>
+			</div>
+		</div>
+		{{/each}}
+
+		<div class="col-12 text-center">
+			<nav>
+				<ul class="pagination">
+					{{#if hasPrevPage}} <li class="page-item"> {{else}}<li class="page-item disabled">{{/if}}
+					<a class="page-link" href="?limit={{limit}}&page={{prevPage}}&gender={{gender}}">Previous</a>
+					</li>
+					<li class="page-item active" aria-current="page">
+					<a class="page-link" href="#">{{ page }}</a>
+					</li>
+					{{#if hasNextPage}} <li class="page-item"> {{else}}<li class="page-item disabled">{{/if}}
+					<a class="page-link" href="?limit={{limit}}&page={{nextPage}}&gender={{gender}}">Next</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+</div>
