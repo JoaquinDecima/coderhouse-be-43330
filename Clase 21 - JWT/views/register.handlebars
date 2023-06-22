@@ -1,0 +1,62 @@
+<section class='container'>
+	<div class='row bg-light login-section'>
+		<div class='col-4'></div>
+		<div class='col-8' style='padding: 50px 20px;'>
+			<h1>Registrar Nuevo Usuario</h1>
+			<form action='/api/users/' method='post'>
+				<div class='row'>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='Nombre'
+							aria-label='Nombre'
+							name='first_name'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='Apellido'
+							aria-label='Apellido'
+							name='last_name'
+						/>
+					</div>
+					<div class='col-12'>
+						<input
+							type='email'
+							class='form-control'
+							placeholder='Correo Electronico'
+							aria-label='Correo'
+							name='email'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='password'
+							class='form-control'
+							placeholder='Contraseña'
+							aria-label='Contraseña'
+							name='password'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='Imagen'
+							aria-label='Imagen'
+							name='img'
+						/>
+					</div>
+
+					<button
+						type='submit'
+						class='btn btn-primary col-12'
+					>Registrar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
