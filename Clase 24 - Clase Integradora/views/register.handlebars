@@ -1,0 +1,63 @@
+<section class='container'>
+	<div class='row bg-light login-section'>
+		<div class='col-4'>
+			<img
+				src='/img/vectors/sign_up.svg'
+				alt='Login'
+				class='img-fluid'
+				style='padding: 90px 10px;'
+			/>
+		</div>
+		<div class='col-8' style='padding: 50px 20px;'>
+			<h1>Registrar Nuevo Usuario</h1>
+			<form action='/api/user/' method='post'>
+				<div class='row'>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='Nombre de Usuario'
+							aria-label='Nombre de Usuario'
+							name='username'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='email'
+							class='form-control'
+							placeholder='Correo Electronico'
+							aria-label='Correo'
+							name='email'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='password'
+							class='form-control'
+							placeholder='Contraseña'
+							aria-label='Contraseña'
+							name='password'
+						/>
+					</div>
+					<div class='col-6'>
+						<input
+							type='text'
+							class='form-control'
+							placeholder='Imagen'
+							aria-label='Imagen'
+							name='img'
+						/>
+					</div>
+
+					<button
+						type='submit'
+						class='btn btn-primary col-12'
+					>Registrar</button>
+				</div>
+			</form>
+		</div>
+		<div class='col-12 text-center' style='padding-bottom: 20px;'>
+			<a href='/login'>¿Ya tienes cuenta? Inicia Sesión</a>
+		</div>
+	</div>
+</section>

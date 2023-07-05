@@ -1,0 +1,75 @@
+<section class='container-fluid'>
+	<div class='row'>
+		<div class='col-md-3'>
+			<div class='row bg-light login-section text-center'>
+
+				<p style='margin-top: 20px;'><img
+						src='{{user.img}}'
+						alt='logo'
+						class='img-fluid'
+						style='max-width: 200px; border-radius: 100%'
+					/></p>
+				<p>Hola, {{user.username}}</p>
+
+			</div>
+		</div>
+
+		<div class='col-md-9'>
+			<div class='row bg-light login-section text-center'>
+				<h2>¿Que estas pensando?</h2>
+				<form action='/api/post/' method='post'>
+					<input type='hidden' value='{{user._id}}' name='user' />
+					<textarea
+						class='col-12 form-control'
+						name='content'
+						id='post'
+						rows='3'
+						style='border-radius: 20px; margin-bottom: 20px;'
+					></textarea>
+					<div class='form-check'>
+						<input
+							class='form-check-input'
+							type='checkbox'
+							value=''
+							name='public'
+							id='public'
+						/>
+						<label class='form-check-label' for='public'>
+							Es Publico
+						</label>
+					</div>
+					<button
+						onclick="putCookie(document.getElementsByTagName('form'));"
+						type='submit'
+						class='btn btn-primary'
+						style='padding: 10px 60px;'
+					>Publicar</button>
+				</form>
+			</div>
+
+			{{#each posts}}
+				<div class='row bg-light login-section text-center'>
+					<div class='col-12'>
+						<div class='row'>
+							<div class='col-2'>
+								<img
+									src='{{user.img}}'
+									alt='logo'
+									class='img-fluid'
+									style='max-width: 100px; border-radius: 100%'
+								/>
+							</div>
+							<div class='col-10'>
+								<h4>{{user.username}}</h4>
+								<p>{{content}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+
+</section>
+
+<script src='/js/main.js'></script>

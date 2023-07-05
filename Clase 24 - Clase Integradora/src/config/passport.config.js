@@ -13,7 +13,7 @@ const incializePassport = () => {
 				secretOrKey: 'privatekey',
 			},
 			(payload, done) => {
-				done(null, payload);
+				done(null, payload.user);
 			}
 		),
 		async (payload, done) => {
