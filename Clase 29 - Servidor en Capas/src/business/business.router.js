@@ -1,8 +1,8 @@
-import { Routers } from "express";
+import { Router } from "express";
 
 import { createBusiness, getBusinessById, getBusiness, addProduct } from "./business.controller.js";
 
-const businessRouter = Routers();
+const businessRouter = Router();
 
 businessRouter.get('/', getBusiness);
 businessRouter.get('/:id', getBusinessById);

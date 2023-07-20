@@ -1,4 +1,4 @@
-import buisinessModel from "./business.model";
+import buisinessModel from "./business.model.js";
 
 export default class Business {
     getBusiness = async () => {
