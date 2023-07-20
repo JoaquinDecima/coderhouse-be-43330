@@ -27,4 +27,13 @@ export default class User {
             return null;
         }
     }
+
+    updateUser = async (id, user) => {
+        try{
+            return await usersModel.updateOne({ _id: id }, { $set: user });
+        } catch(error) {
+            console.log(error);
+            return null;
+        }
+    }
 }
