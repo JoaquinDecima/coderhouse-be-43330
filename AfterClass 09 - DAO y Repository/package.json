@@ -1,0 +1,11 @@
+{
+  "name": "AfterClass 09 - DAO y Repository",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.4.2"
+  }
+}
