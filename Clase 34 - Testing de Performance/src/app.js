@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import User from './model/user.model.js';
 import enviroment from './tools/enviroment.tool.js';
+import { faker } from '@faker-js/faker'
 import { loggerMiddleware } from './middleware/logger.middleware.js';
 
 const app = express();
@@ -44,9 +45,18 @@ app.get('/op2', (req, res) => {
 app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
     try {
-        if (!name) res.status(400).send('Name is required');
-        if (!email) res.status(400).send('Email is required');
-        if (!password) res.status(400).send('Password is required');
+        if (!name) {
+            req.logger.warn("Name is required");
+            res.status(400).send('Name is required');
+        }
+        if (!email) {
+            req.logger.warn("Name is required");
+            res.status(400).send('Email is required');
+        }
+        if (!password) {
+            req.logger.warn("Name is required");
+            res.status(400).send('Password is required');
+        }
 
         const user = new User({
             name,
@@ -55,29 +65,55 @@ app.post('/register', async (req, res) => {
         });
 
         await user.save();
+        req.logger.info("User created");
 
         res.status(201).send(user);
     } catch (error) {
-        console.error(error);
+        req.logger.error(error);
         res.status(500).send('There was a problem trying to register the user');
     }
+});
+
+app.get('/user', async (req, res) => {
+    const user = {
+        name: faker.person.fullName(),
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+    }
+
+    res.json(user);
 });
 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-        if (!email) res.status(400).send('Email is required');
-        if (!password) res.status(400).send('Password is required');
+        if (!email) {
+            req.logger.warn("Name is required");
+            res.status(400).send('Email is required');
+        }
+        if (!password) {
+            req.logger.warn("Name is required");
+            res.status(400).send('Password is required');
+        }
 
         const user = await User.findOne({ email })
 
-        if (!user) res.status(404).send('User not found');
+        if (!user) {
+            req.logger.warn("User not found");
+            res.status(404).send('User not found')
+        };
 
-        if (user.password !== password) res.status(401).send('Invalid password');
+        if (user.password !== password) {
+            req.logger.warn("Invalid password");
+            res.status(401).send('Invalid password');
+        }
 
+        req.logger.info("Login successfull");
         res.status(200).send({ message: 'Login successfull', user });
-    } catch (error) { }
-    res.send('Hello world');
+    } catch (error) {
+        req.logger.error(error);
+        res.status(500).send('There was a problem trying to login the user');
+    }
 });
 
 app.listen(enviroment.PORT, () => {

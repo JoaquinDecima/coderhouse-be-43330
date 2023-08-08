@@ -1,0 +1,47 @@
+config:
+  plugins:
+    metrics-by-endpoint : {}
+  target: 'http://localhost:3000'
+  headers:
+    Content-Type: application/json
+    accept: application/json
+  phases:
+    - duration: 10
+      arrivalRate: 5
+      name: Inicio
+    - duration: 30
+      arrivalRate: 20
+      name: Sostenido
+    - duration: 20
+      arrivalRate: 1
+      name: Bajo
+
+scenarios:
+  - name: Registro de usuario + Login
+    flow:
+      - log: 'Crear Datos de Usuarios'
+      - get:
+          url: '/user' 
+          capture:
+            - json: '$.name'
+              as: 'name'
+            - json: '$.email'
+              as: 'email'
+            - json: '$.password'
+              as: 'password'
+      - log: 'Crear Usuario'
+      - post: 
+          url: /register
+          body:
+            name: '${name}'
+            email: '${email}'
+            password: '${password}'
+      - think: 2
+      - log: 'Iniciar Sesion'
+      - post:
+          url: /login
+          body:
+            email: '${email}'
+            password: '${password}'
+
+      
