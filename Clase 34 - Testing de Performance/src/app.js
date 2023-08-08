@@ -1,15 +1,45 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import User from './model/user.model';
+import User from './model/user.model.js';
+import enviroment from './tools/enviroment.tool.js';
+import { loggerMiddleware } from './middleware/logger.middleware.js';
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(loggerMiddleware);
 
-await mongoose.connect(
-    'mongodb+srv://jdecima:123@coderclaster.fttdpng.mongodb.net/?retryWrites=true&w=majority'
-);
+await mongoose.connect(enviroment.MONGO_URI);
+
+app.get('/', (req, res) => {
+    try {
+        req.logger.info('Ingresa en try');
+        throw new Error('Exploto TODO');
+        res.send('Hello world');
+    } catch (error) {
+        req.logger.error("Boom");
+        res.status(500).send('BOOM');
+    }
+
+});
+
+app.get('/op1', (req, res) => {
+    let num = 0;
+    for (let i = 0; i < 100000; i++) {
+        num += i;
+    }
+    res.send({ num });
+});
+
+app.get('/op2', (req, res) => {
+    let num = 0;
+    for (let i = 0; i < 10e8; i++) {
+        num += i;
+    }
+    res.send({ num });
+});
+
 
 app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
@@ -50,6 +80,6 @@ app.post('/login', async (req, res) => {
     res.send('Hello world');
 });
 
-app.listen(3000, () => {
+app.listen(enviroment.PORT, () => {
     console.log('Server running');
 });
