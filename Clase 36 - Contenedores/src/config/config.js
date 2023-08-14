@@ -1,5 +1,7 @@
+import dotenv from 'dotenv';
+dotenv.config();
 export default {
-    mongo:{
+    mongo: {
         URL: process.env.MONGO_URL || 'http://localhost:27017'
     }
 }
