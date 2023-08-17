@@ -1,13 +1,12 @@
-
-import Courses from '../dao/dbManagers/courses.js';
+import coursesService from "../services/courses.service.js";
 
 export default class CoursesController {
     constructor() {
-        this.coursesManager = new Courses();
+        this.service = coursesService;
     }
 
     async getAllCourses(req, res) {
-        let courses = await this.coursesManager.getAll();
+        let courses = await this.service.getCourses();
         res.send({ status: "success", payload: courses })
     }
 
@@ -19,7 +18,7 @@ export default class CoursesController {
             users: [],
             teacher: 'sin asignar'
         }
-        const result = await this.coursesManager.saveCourse(newCourse);
+        const result = await this.service.saveCourse(newCourse);
         res.send({ status: "success", payload: result });
     }
 }

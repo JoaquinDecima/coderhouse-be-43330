@@ -6,19 +6,19 @@ export default class Users {
     }
     getAll = async () => {
         let users = await userModel.find().populate('courses');
-        return users.map(user=>user.toObject())
+        return users.map(user => user.toObject())
     }
-    saveUser = async (user) => {
+    save = async (user) => {
         let result = await userModel.create(user);
         return result;
     }
-    getBy = async(params) =>{
+    getBy = async (params) => {
         let result = await userModel.findOne(params).populate('courses').lean();
         return result;
     }
-    updateUser = async(id,user) =>{
+    update = async (id, user) => {
         delete user._id;
-        let result = await userModel.updateOne({_id:id},{$set:user})
+        let result = await userModel.updateOne({ _id: id }, { $set: user })
         return result;
     }
 }

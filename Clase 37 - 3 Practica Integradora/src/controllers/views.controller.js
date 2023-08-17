@@ -1,17 +1,14 @@
-import Users from '../dao/dbManagers/users.js';
-import Courses from '../dao/dbManagers/courses.js';
-
-const usersManager = new Users();
-const coursesManager = new Courses();
+import userService from "../services/user.service.js";
+import coursesService from "../services/courses.service.js";
 
 export const home = async (req, res) => {
-    let users = await usersManager.getAll();
+    let users = await userService.getUsers();
     console.log(users);
     res.render('users', { users })
 }
 
 export const courses = async (req, res) => {
-    let courses = await coursesManager.getAll();
+    let courses = await coursesService.getCourses();
     console.log(courses);
     res.render('courses', { courses })
 }
