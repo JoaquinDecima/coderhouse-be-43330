@@ -1,24 +1,10 @@
 import { Router } from 'express';
-import Courses from '../dao/dbManagers/courses.js';
+import CoursesController from '../controllers/courses.controller.js';
 
+const coursesController = new CoursesController();
 const router = Router();
-const coursesManager = new Courses();
 
-router.get('/',async(req,res)=>{
-    let courses = await coursesManager.getAll();
-    res.send({status:"success",payload:courses})
-})
-
-router.post('/',async(req,res)=>{
-    const {title,description} = req.body;
-    let newCourse = {
-        title,
-        description,
-        users:[],
-        teacher:'sin asignar'
-    }
-    const result = await coursesManager.saveCourse(newCourse);
-    res.send({status:"success",payload:result});
-})
+router.get('/', coursesController.getAllCourses);
+router.post('/', coursesController.addCourse);
 
 export default router;
