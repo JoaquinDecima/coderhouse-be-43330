@@ -16,7 +16,9 @@ import config from './config/enviroment.config.js';
 
 const app = express();
 
-mongoose.connect(config.MONGO_URI)
+if (config.PERSISTENCE === 'mongodb') {
+    mongoose.connect(config.MONGO_URI)
+}
 
 /**
  * Template engine
