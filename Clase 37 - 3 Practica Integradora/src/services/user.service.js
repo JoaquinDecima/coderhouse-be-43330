@@ -1,5 +1,6 @@
-import UserRepository from "../repositories/user.repository"
+import UserRepository from "../repositories/user.repository.js"
+import config from "../config/enviroment.config.js"
 
-const userService = new UserRepository();
+const userService = new UserRepository(config.userDAO);
 
 export default userService

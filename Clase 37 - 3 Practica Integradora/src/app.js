@@ -12,10 +12,11 @@ import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import cookieParser from 'cookie-parser';
 
-const app = express();
-const PORT = 8080;
+import config from './config/enviroment.config.js';
 
-mongoose.connect('URL DE MONGO AQUÍ :) ')
+const app = express();
+
+mongoose.connect(config.MONGO_URI)
 
 /**
  * Template engine
@@ -40,4 +41,4 @@ app.use('/api/users', usersRouter);
 app.use('/api/courses', coursesRouter);
 app.use('/api/sessions', sessionsRouter);
 
-const server = app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+app.listen(config.PORT, () => console.log(`Listening on PORT ${config.PORT}`));
