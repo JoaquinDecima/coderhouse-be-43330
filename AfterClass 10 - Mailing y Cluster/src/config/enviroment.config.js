@@ -10,6 +10,9 @@ class ConfigManager {
             this.PORT = process.env.PORT || 8080;
             this.MONGO_URI = process.env.MONGO_URI;
             this.PERSISTENCE = process.env.PERSISTENCE || 'mongodb';
+            this.MAIL_SERVICE = process.env.MAIL_SERVICE || 'gmail';
+            this.MAIL_USER = process.env.MAIL_USER;
+            this.MAIL_PASS = process.env.MAIL_PASS;
             this.userDAO = null;
             this.courseDAO = null;
             this.initializePersistence();

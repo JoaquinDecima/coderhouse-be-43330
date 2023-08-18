@@ -1,11 +1,13 @@
 import coursesService from "../services/courses.service.js";
 import userService from "../services/user.service.js";
+import MailingService from "../services/mail.service.js";
 
 export default class UsersController {
 
     constructor() {
         this.usersService = userService;
         this.coursesService = coursesService;
+        this.mailingService = new MailingService();
     }
 
     async getAllUsers(req, res) {
@@ -46,6 +48,16 @@ export default class UsersController {
         course.students.push(user._id);
         await this.usersService.updateUser(uid, user);
         await this.coursesService.updateCourse(cid, course);
+        //Enviamos el correo
+        const mailOptions = {
+            from: 'AfterClass <jdecima@vasak.net.ar>',
+            to: 'staff@laempresa.net',
+            subject: `Nuevo usuario registrado en el curso ${course.name}`,
+            html: `<h1>Se ha registrado un nuevo usuario en el curso ${course.name}</h1>
+            <p>El usuario ${user.first_name} ${user.last_name} se ha registrado en el curso ${course.name}</p>
+            <p>Para ver el detalle del curso, ingrese a la plataforma</p>`
+        };
+        this.mailingService.sendMail(mailOptions);
         res.send({ status: "success", message: "User added to course" })
     }
 }
