@@ -43,4 +43,4 @@ app.use('/api/users', usersRouter);
 app.use('/api/courses', coursesRouter);
 app.use('/api/sessions', sessionsRouter);
 
-app.listen(config.PORT, () => console.log(`Listening on PORT ${config.PORT}`));
+export default app;

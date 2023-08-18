@@ -1,4 +1,5 @@
-import config from '../config/enviroment.config'
+import nodemailer from 'nodemailer';
+import config from '../config/enviroment.config.js'
 
 export default class MailingService{
   constructor() {
