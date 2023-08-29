@@ -4,7 +4,7 @@ import { logger } from "./config/logger.config.js";
 if (cluster.isPrimary) {
   logger.info(`Primary ${process.pid} is running`);
   // Fork workers.
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 2; i++) {
     cluster.fork();
   }
 

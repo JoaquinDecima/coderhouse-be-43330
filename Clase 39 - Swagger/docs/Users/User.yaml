@@ -1,0 +1,83 @@
+paths:
+  /api/users/:
+    get:
+      summary: Listar todos los usuarios
+      security:
+        - bearerAuth: []
+          roles:
+            - admin
+      tags:
+        - Users
+      responses:
+        200:
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        500:
+          description: Error del servidor
+  /api/users/{uid}:
+    get:
+      summary: Obtener un usuario por su ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del usuario
+          schema:
+            type: string
+      responses:
+        200:
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Usuario no encontrado
+        500:
+          description: Error del servidor
+    put:
+      summary: Actualizar un usuario por su ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del usuario
+          schema:
+            type: string
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID del usuario (autogenerado por MongoDB)
+        first_name:
+          type: string
+          description: Nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        email:
+          type: string
+          unique: true
+          description: Correo del usuario, es unico
+        password:
+          type: string
+          description: Contraseña del usuario hasheada obviamente
+      example:
+        id: ObjectId("5f9b2b3b9c4c9b1b2c9b1b2c")
+        first_name: "Juan"
+        last_name: "Perez"
+        email: "juanperez@email.com"
+        password: "lskdhflskdjfh@^235j63lkglkgb"
