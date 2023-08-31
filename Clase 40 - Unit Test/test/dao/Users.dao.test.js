@@ -25,10 +25,12 @@ describe('UsersDAO - MongoDB', function() {
       email: 'juan.perez@my.mail',
       password: '123456',
     };
-    const result = await userDao.save(mockUser);
-    
-    assert.ok(result._id);
-    expect(result._id).to.be.ok;
+    userDao.save(mockUser)
+      .then((result) => {
+        assert.ok(result._id);
+        expect(result._id).to.be.ok;
+        done();
+      })
   });
 
   it("El DAO debe agregar un array vacio por defecto al estado interno mascotas", async () => {
@@ -38,10 +40,12 @@ describe('UsersDAO - MongoDB', function() {
       email: "juan.perez@my.mail",
       password: "123456",
     };
-    const result = await userDao.save(mockUser);
-
-    assert.deepStrictEqual(result.pets, []);
-    expect(result.pets).to.deep.equal([]);
+    userDao.save(mockUser)
+      .then((result) => { 
+        assert.deepStrictEqual(result.pets, []);
+        expect(result.pets).to.deep.equal([]);
+        done()
+      })
   });
 
   it("El DAO debe poder obtener el usuario por email", async () => {
@@ -51,13 +55,16 @@ describe('UsersDAO - MongoDB', function() {
       email: "juan.perez@my.mail",
       password: "123456",
     };
-    await userDao.save(mockUser);
-
-    const user = await userDao.getBy({email: "juan.perez@my.mail"});
-
-    assert.ok(user._id);
-    expect(user._id).to.be.ok;
-    expect(user.email).to.be.equal("juan.perez@my.mail");
-    expect(user).to.have.property("email");
+    userDao.save(mockUser)
+      .then((result) => {
+        userDao.getBy({email: "juan.perez@my.mail"})
+          .then((user) => {
+            assert.ok(user._id);
+            expect(user._id).to.be.ok;
+            expect(user.email).to.be.equal("juan.perez@my.mail");
+            expect(user).to.have.property("email");
+            done();
+          })
+      })
   });
 });
