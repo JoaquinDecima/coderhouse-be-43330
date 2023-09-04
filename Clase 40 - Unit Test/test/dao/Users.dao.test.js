@@ -12,11 +12,7 @@ mongoose.connect(
 const userDao = new Users();
 
 describe('UsersDAO - MongoDB', function() {
-  beforeEach( function () {
-    this.timeout(10000);
-    //mongoose.connection.collections.users.drop();
-  });
-  
+  this.timeout(10000);
 
   it('El DAO debe agregar un usuario correctamente a la base de datos de MongoDB', async function() {
     const mockUser = {
