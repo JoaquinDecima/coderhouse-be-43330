@@ -1,52 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
+import { User } from './schemes/user.scheme';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class UserService {
-  users: User[];
-  nextId: number;
+  constructor(@InjectModel(User.name) private userModule: Model<User>) {}
 
-  constructor() {
-    this.users = [];
-    this.nextId = 1;
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    return await this.userModule.create(createUserDto);
   }
 
-  create(createUserDto: CreateUserDto): User {
-    const user: User = {
-      id: this.nextId,
-      ...createUserDto,
-    };
-
-    this.users.push(user);
-    this.nextId++;
-
-    return user;
+  async findAll(): Promise<User[]> {
+    return this.userModule.find().exec();
   }
 
-  findAll(): User[] {
-    return this.users;
+  async findOne(id: string): Promise<User> {
+    return await this.userModule.findById(id).exec();
   }
 
-  findOne(id: number): User {
-    return this.users.find((user) => user.id === id);
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    await this.userModule.updateOne({ _id: id }, updateUserDto).exec();
+    return await this.findOne(id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto): User {
-    const user = this.findOne(id);
-    const index = this.users.findIndex((user) => user.id === id);
-    this.users[index] = {
-      ...user,
-      ...updateUserDto,
-    };
-
-    return this.users[index];
-  }
-
-  remove(id: number): User {
-    const user = this.findOne(id);
-    this.users = this.users.filter((user) => user.id !== id);
-    return user;
+  async remove(id: number): Promise<User> {
+    return await this.remove(id);
   }
 }
