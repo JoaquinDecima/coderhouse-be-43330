@@ -11,12 +11,18 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import cookieParser from 'cookie-parser';
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 import config from './config/enviroment.config.js';
+import { swaggerOptions } from './config/swagger.config.js';
 import { logger } from './config/logger.js';
 import { loggerMiddleware } from './middleware/logger.middleware.js';
 
 const app = express();
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
+logger.info(swaggerDocs);
 
 if (config.PERSISTENCE === 'mongodb') {
     mongoose.connect(config.MONGO_URI)
@@ -42,6 +48,7 @@ app.use(passport.initialize());
 app.use(cookieParser());
 
 app.use('/', viewsRouter)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/api/users', usersRouter);
 app.use('/api/courses', coursesRouter);
 app.use('/api/sessions', sessionsRouter);

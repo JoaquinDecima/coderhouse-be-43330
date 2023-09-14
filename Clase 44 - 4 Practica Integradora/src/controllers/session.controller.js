@@ -21,6 +21,6 @@ export const login = (req, res) => {
 }
 
 export const failedLogin = (req, res) => {
-    console.log(req.message);
+    req.logger.error(req.message);
     res.send("failed Login");
 }
