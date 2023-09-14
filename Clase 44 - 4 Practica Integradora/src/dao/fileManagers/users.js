@@ -1,5 +1,6 @@
 import fs from 'fs';
 import __dirname from '../../utils.js';
+import { logger } from '../../config/logger.js';
 /**
  * Recuerda que es una práctica integradora, no te esmeres demasiado en explicar a fondo un tema
  * Tu mayor fuerte en la práctica integradora será la transición de fileSystem a base de datos
@@ -11,7 +12,7 @@ import __dirname from '../../utils.js';
 const path = __dirname + '/files/users.json'
 export default class Users {
     constructor() {
-        console.log(`Working with users on path: ${path}`)
+        logger.info(`Working with users on path: ${path}`)
     }
     getAll = async () => {
         if (fs.existsSync(path)) {
@@ -20,7 +21,7 @@ export default class Users {
                 return JSON.parse(data);
             }
             catch (error) {
-                console.log("Couldn't read file: " + error)
+                logger.error("Couldn't read file: " + error)
                 return null;
             }
         }
@@ -45,7 +46,7 @@ export default class Users {
             }
         }
         catch (error) {
-            console.log("Couldn't write file: " + error)
+            logger.error("Couldn't write file: " + error)
             return null;
         }
     }

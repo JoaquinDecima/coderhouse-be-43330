@@ -1,8 +1,9 @@
 import { userModel } from "../models/users.js"
+import { logger } from "../../config/logger.js";
 
 export default class Users {
     constructor() {
-        console.log(`Working users with Database persistence in mongodb`)
+        logger.info(`Working users with Database persistence in mongodb`)
     }
     getAll = async () => {
         let users = await userModel.find().populate('courses');

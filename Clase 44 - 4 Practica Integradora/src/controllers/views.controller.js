@@ -3,12 +3,12 @@ import coursesService from "../services/courses.service.js";
 
 export const home = async (req, res) => {
     let users = await userService.getUsers();
-    console.log(users);
+    req.logger.trace(users);
     res.render('users', { users })
 }
 
 export const courses = async (req, res) => {
     let courses = await coursesService.getCourses();
-    console.log(courses);
+    req.logger.trace(courses);
     res.render('courses', { courses })
 }

@@ -13,6 +13,8 @@ import initializePassport from './config/passport.config.js';
 import cookieParser from 'cookie-parser';
 
 import config from './config/enviroment.config.js';
+import { logger } from './config/logger.js';
+import { loggerMiddleware } from './middleware/logger.middleware.js';
 
 const app = express();
 
@@ -33,6 +35,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(loggerMiddleware(logger));
 
 initializePassport();
 app.use(passport.initialize());
@@ -43,4 +46,4 @@ app.use('/api/users', usersRouter);
 app.use('/api/courses', coursesRouter);
 app.use('/api/sessions', sessionsRouter);
 
-app.listen(config.PORT, () => console.log(`Listening on PORT ${config.PORT}`));
+app.listen(config.PORT, () => logger.info(`Listening on PORT ${config.PORT}`));

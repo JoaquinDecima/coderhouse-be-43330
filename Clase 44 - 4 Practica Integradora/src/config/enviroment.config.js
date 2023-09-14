@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { logger } from './logger.js';
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ class ConfigManager {
 
     async initializePersistence() {
         if (this.PERSISTENCE === 'mongodb') {
-            console.log(`Working with Database persistence in mongodb`);
+            logger.info(`Working with Database persistence in mongodb`);
             await import('../dao/dbManagers/courses.js')
                 .then(module => {
                     this.courseDAO = new module.default();
@@ -30,7 +31,7 @@ class ConfigManager {
                     this.userDAO = new module.default();
                 })
         } else {
-            console.log(`Working with file persistence`);
+            logger.info(`Working with file persistence`);
             await import('../dao/fileManagers/courses.js')
                 .then(module => {
                     this.courseDAO = new module.default();
